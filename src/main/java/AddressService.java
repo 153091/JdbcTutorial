@@ -108,15 +108,60 @@ public class AddressService extends Util implements AddressDAO {
             }
         }
 
+        return address;
     }
 
     @Override
-    public void update(Address address) {
+    public void update(Address address) throws SQLException {
+
+        String sql = "UPDATE ADDRESS SET COUNTRY=?, CITY=?, STREET=?, POST_CODE=? WHERE ID=?";
+        PreparedStatement preparedStatement = null;
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, address.getCountry());
+            preparedStatement.setString(2, address.getCity());
+            preparedStatement.setString(3, address.getStreet());
+            preparedStatement.setString(4, address.getPostCode());
+            preparedStatement.setLong(4, address.getId());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
 
     }
 
     @Override
-    public void remove(Address address) {
+    public void remove(Address address) throws SQLException {
+        String sql = "DELETE FROM ADDRESS WHERE ID=?";
 
+        PreparedStatement preparedStatement = null;
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setLong(1, address.getId());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
     }
 }

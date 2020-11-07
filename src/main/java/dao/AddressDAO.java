@@ -16,8 +16,8 @@ public interface AddressDAO {
     Address readById(long id) throws SQLException;
 
     //update
-    void update(Address address);
+    void update(Address address) throws SQLException;
 
     //delete
-    void remove(Address address);
+    void remove(Address address) throws SQLException;
 }
