@@ -5,7 +5,7 @@ JDBC and H2 database application
 The application describes work with JDBC and H2 database. The application divided on 3 layers: entity, dao and service.
 
 Database structure
-
+https://cloud.githubusercontent.com/assets/5372875/22624532/4cbef472-eb87-11e6-98eb-7a35541d2a49.jpg
 
 Create tables SQL script
 CREATE TABLE "ADDRESS" ( "ID" bigint NOT NULL, "COUNTRY" character varying(255) NOT NULL, "CITY" character varying(255) NOT NULL, "STREET" character varying(255) NOT NULL, "POST_CODE" character varying(10) NOT NULL, CONSTRAINT "ID" PRIMARY KEY ("ID") )
