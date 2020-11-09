@@ -1,8 +1,9 @@
-import bl.Util;
+
 import entity.Address;
 import entity.EmplProj;
 import entity.Employee;
 import entity.Project;
+import org.h2.tools.DeleteDbFiles;
 import service.AddressService;
 import service.EmplProjService;
 import service.EmployeeService;
@@ -10,6 +11,7 @@ import service.ProjectService;
 
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.List;
 
 public class Domain {
     public static void main(String[] args) {
@@ -46,16 +48,19 @@ public class Domain {
         emplProj.setProjectId(project.getId());
 
         try {
-            addressService.add(address);
-            employeeService.add(employee);
-            projectService.add(project);
-            emplProjService.add(emplProj);
+//            addressService.add(address);
+//            employeeService.add(employee);
+//            projectService.add(project);
+//            emplProjService.add(emplProj);
 
-//            List<Address> addressList = addressService.getAll();
-//            List<Employee> employeeList = employeeService.getAll();
-//            for (Employee e : employeeList) {
-//                System.out.println(e);
-//            }
+            List<Address> addressList = addressService.readAll();
+            for (Address a : addressList) {
+                System.out.println(a);
+            }
+            List<Employee> employeeList = employeeService.readAll();
+            for (Employee e : employeeList) {
+                System.out.println(e);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
